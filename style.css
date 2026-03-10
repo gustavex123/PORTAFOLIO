@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    list-style: 1.6;
+    background: #f5f5f5;
+}
+header{
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+/*selector descendiente*/
+nav ul{
+    list-style: none;
+}
+/*selector de tipo para los elementos li dentro de nav ul*/
+nav ul li{
+    display: inline-block; /*inline hace que los elementos este solo en linea sin salto de linea*/
+    margin: 0 20px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none; /*quita linea de enlace*/
+    font-weight: bold;
+}
+/*selector de CLASE, selecciona cualquier elemento que tenga class="proyecto.card"*/
+.proyecto-card{
+    width: 300px;
+    border: 1px solid #bf9292;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;/*redondea esquinas*/
+    background-color: #a5efb7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+#contenedor-proyectos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #034a5f;
+}
+/*MEDIA QUERYS adapata al contenedor padre, se puede hacer animaciones o cambios en las tarjetas*/ 
+@media screen and (max-width: 600px){
+    nav ul li{
+        display: block;
+        margin: 10px 0;
+    }
+    /*las tarjetas ocupen todo el ancho de la pantalla*/
+    .proyecto-card{
+        width: 100%;
+        background-color: #609d6f;
+    }
+    h1{
+        font-size: 1.Ser;
+    }
+}
+@media (prefers-color-scheme: dark){
+    body{
+        background: #121212;
+        color: #c0c0c0;
+    }
+    header{
+        background: #1f1f1f;
+    }
+    .proyecto-card{
+        background: #1e1e1e;
+        border: 1px solid #333;
+        color: #115858;
+    }
+    .proyecto-card a{
+        color: #90caf9;
+    } 
+}
