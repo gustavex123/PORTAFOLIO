@@ -21,43 +21,43 @@ function mostrarProyectos() {
 }
 botonProyectos.addEventListener("click", mostrarProyectos);
  
-  
+ 
  
 // Cambiar tema
 const botonTema = document.getElementById("btn-tema");
 const cuerpoPagina = document.body;
-/*function alternarTema() {
+function alternarTema() {
     if(cuerpoPagina.style.backgroundColor === "black") {
-        cuerpoPagina.style.backgroundColor = "white";
+        cuerpoPagina.style.backgroundColor = "gray";
         cuerpoPagina.style.color = "black"; //cambio del texto a negro
     }else{
         //si NO ES negro, lo cambiamos a tema negro
         cuerpoPagina.style.backgroundColor = "black";
-        cuerpoPagina.style.color = "white"; //cambio del texto a blanco
+        cuerpoPagina.style.color = "gray"; //cambio del texto a blanco
     }
    
 }
-botonTema.addEventListener("click", alternarTema);*/
+botonTema.addEventListener("click", alternarTema);
  
 // ejemplo: alerta al hacer clic de un proyecto
  
-const todasLasTarjetas = document.querySelectorAll(".proyecto-card");
+/*const todasLasTarjetas = document.querySelectorAll(".proyecto-card");
  
 todasLasTarjetas.forEach(tarjeta => {
     tarjeta.addEventListener("click", function() {
         const nombreProyecto = tarjeta.querySelector("h3").innerText;
         alert("Haz hecho clic en el proyecto: " + nombreProyecto);
     });
-});
+});*/
  
 ///variables: let (que puede cambiar)  - const (es fijo que no cambia)
 const nombreDev= "Gustavo Arando"; // fijo  no cambia
-let proyectosCompletados = 4; // puede aumentar o disminuir  o variar en el tiempo  dependiendo del scope
+//let proyectosCompletados = 4; // puede aumentar o disminuir  o variar en el tiempo  dependiendo del scope
  
 // tipos primitivos
 let esInstructor = true; // boolean
 let edad = 34;  //number
-let saludo = "Gustavo Arando" //string
+let saludo = "Hola soy Gustavo Arando" //string
  
 // tipos de datos complejos
 let habilidades = ["JavaScript", "HTML", "CSS"];
@@ -72,31 +72,6 @@ const proyectoNuevo = {
     tecnologias: ["HTML", "CSS", "JavaScript"],
     completado: false
 };
-const changeBackgroundButton = document.getElementById("change-bg-btn");
-const originalBackgroundColor = getComputedStyle(document.body).backgroundColor;
-let isMidnightBlue = false;
-
-/*changeBackgroundButton.addEventListener("click", function () {
-  if (isMidnightBlue) {
-    document.body.style.backgroundColor = originalBackgroundColor;
-  } else {
-    document.body.style.backgroundColor = "midnightblue";
-  }
-
-  isMidnightBlue = !isMidnightBlue;
-});*/
-const elemento = document.getElementById("proyecto-card");
-
-// Cambiar a rojo al pasar el mouse
-elemento.addEventListener("mouseover", function() {
-    elemento.style.backgroundColor = "blue";
-});
-// Volver al color original al salir
-elemento.addEventListener("mouseout", function() {
-    elemento.style.backgroundColor = ""; // Vacío elimina el estilo en línea
-});
-
-
  
 // entender la visibilidad de las variables y la memoria de las funciones
  
@@ -155,9 +130,9 @@ const proyectosReact = misProyectos.filter(p => p.techs.includes("React"));
 //map(): creamos un nuevo array con solo los nombres de los proyectos
 const nombresProyectos = misProyectos.map(p => p.nombre);
  
-// ejemplo de carga de portafolio  con fetch() y async/await
+/// ejemplo de carga de portafolio  con fetch() y async/await
  
-/*async function cargarProyectos() {
+async function cargarProyectos() {
     try {
         const response = await fetch("https://api.github.com/users/loquendo2309/repos");
         if (!response.ok) {
@@ -178,23 +153,54 @@ const nombresProyectos = misProyectos.map(p => p.nombre);
     } catch (error) {
         console.error("Error:", error);
     }
-}*/
+}
  
-cargarProyectos();
+//cargarProyectos();
  
 /// modularidad
 // controlador de interfaz
+ 
 const UI = {
     cuerpo: document.body,
  
     alternarColor: function() {
-        const esOscuro = this.cuerpo.style.backgroundColor === "gray";
-        this.cuerpo.style.backgroundColor = esOscuro ? "black" : "gray";
-        this.cuerpo.style.color = esOscuro ? "gray" : "black";
+        const esOscuro = this.cuerpo.style.backgroundColor === "blue";
+        this.cuerpo.style.backgroundColor = esOscuro ? "gray" : "#69c6ceed";
+        this.cuerpo.style.color = esOscuro ? "green" : "gray";
     },
     irAseccion: function(id) {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
  
 };
-botonTema = document.getElementById("btn-tema");
 botonTema.addEventListener("click", () => UI.alternarColor());
+
+// delegacion  de  eventos: un solo listener para todo el contenedor de proyectos 
+// hereda del padre a los hijo el evento de escuchar, optimiza el uso de memoria 
+//
+const contenedor = document.getElementById("contenedor-proyectos");
+ 
+contenedor.addEventListener("click", function(evento){
+ // .target el elemento que fue clikeado .closest busca el padre mas cercano que coincida con el selector dado
+    const tarjeta = evento.target.closest(".proyecto-card");
+    if(tarjeta){
+        alert ("Haz hecho clic en un proyecto: " + tarjeta.querySelector("h3").innerText);
+    }
+ 
+});
+
+contenedor.addEventListener("mouseover", function(evento){
+ // .target el elemento que fue clikeado .closest busca el padre mas cercano que coincida con el selector dado
+    const tarjeta = evento.target.closest(".proyecto-card");
+    // Cambiar color al entrar (mouseover)
+    tarjeta.addEventListener('mouseover', function() {
+        tarjeta.style.backgroundColor = 'lightblue'; // Nuevo color
+    });
+
+    // Restaurar color al salir (mouseout)
+    tarjeta.addEventListener('mouseout', function() {
+        tarjeta.style.backgroundColor = ''; // Vuelve al color original del CSS
+    });
+
+});
+
+

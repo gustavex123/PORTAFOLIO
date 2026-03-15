@@ -38,13 +38,36 @@ nav ul li a{
     background-color: #a5efb7;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.bienvenido{
+    width: 100%;
+    border: 1px solid #ffffff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;/*redondea esquinas*/
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 #contenedor-proyectos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px;
+    background: #023443;
+}
+#contenedor1{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 20px;
-    background: #034a5f;
+    background: #023443;
+}
+#proyectos{
+    background: #023443;
+}
+#titulo{
+    color: #ffffff;
 }
 /*MEDIA QUERYS adapata al contenedor padre, se puede hacer animaciones o cambios en las tarjetas*/ 
 @media screen and (max-width: 600px){
@@ -54,6 +77,10 @@ nav ul li a{
     }
     /*las tarjetas ocupen todo el ancho de la pantalla*/
     .proyecto-card{
+        width: 100%;
+        background-color: #609d6f;
+    }
+    .bienvenido{
         width: 100%;
         background-color: #609d6f;
     }
